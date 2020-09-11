@@ -3,6 +3,7 @@ const helmet = require("helmet");
 const express = require("express");
 const mongoose = require("mongoose");
 const { Message } = require("./models/message");
+const Pusher = require("pusher");
 
 mongoose
   .connect(`${process.env.DB_CREDENTIALS}`, {
@@ -15,6 +16,26 @@ const app = express();
 app.use(express.json());
 app.use(helmet());
 const port = process.env.PORT || 4000;
+
+const pusher = new Pusher({
+  appId: "1071379",
+  key: "dbb1d6a74095b5cc4f07",
+  secret: "283118eb736fa6b122b5",
+  cluster: "eu",
+  encrypted: true,
+});
+
+const db = mongoose.connection;
+db.once("open", () => {
+  console.log("db connected");
+
+  const messageCollection = db.collection("Message");
+  const changeStream = messageCollection.watch();
+
+  changeStream.on("change", (change) => {
+    console.log(change);
+  });
+});
 
 const server = app.listen(port, () => console.log(`Listening on port ${port}`));
 
