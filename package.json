@@ -1,0 +1,11 @@
+{
+  "name": "whatsapp-clone-mern-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "David <davidobob@laposte.net>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.10.4"
+  }
+}
