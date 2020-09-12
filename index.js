@@ -14,6 +14,13 @@ mongoose
 
 const app = express();
 app.use(express.json());
+
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "*");
+  next();
+});
+
 app.use(helmet());
 const port = process.env.PORT || 4000;
 
@@ -29,11 +36,20 @@ const db = mongoose.connection;
 db.once("open", () => {
   console.log("db connected");
 
-  const messageCollection = db.collection("Message");
+  const messageCollection = db.collection("messages");
   const changeStream = messageCollection.watch();
 
   changeStream.on("change", (change) => {
-    console.log(change);
+    if (change.operationType === "insert") {
+      console.log("OPERATION TYPE INSERT");
+      const messageDetails = change.fullDocument;
+      pusher.trigger("messages", "inserted", {
+        name: messageDetails.name,
+        message: messageDetails.message,
+      });
+    } else {
+      console.log("Pusher error");
+    }
   });
 });
 
@@ -43,6 +59,7 @@ app.post("/api/messages", async (req, res) => {
   const newMessage = new Message({
     message: req.body.message,
     name: req.body.name,
+    received: req.body.received,
   });
 
   try {
