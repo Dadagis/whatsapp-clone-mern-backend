@@ -1,5 +1,5 @@
 const auth = require("../middlewares/auth");
-const Message = require("../controller/");
+const Message = require("../controllers/messages_controller");
 const express = require("express");
 const router = express.Router();
 
