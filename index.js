@@ -72,12 +72,4 @@ app.post("/api/messages", async (req, res) => {
   }
 });
 
-app.get("/api/messages/sync", (req, res) => {
-  Message.find((err, data) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.status(200).send(data);
-    }
-  });
-});
+// app.get("/api/messages/sync", );
