@@ -70,14 +70,6 @@ app.post("/api/messages", async (req, res) => {
   } catch (error) {
     console.log(error.message);
   }
-
-  //   Message.create(message, (err, data) => {
-  //     if (err) {
-  //       res.status(500).send(err);
-  //     } else {
-  //       res.status(201).send(data);
-  //     }
-  //   });
 });
 
 app.get("/api/messages/sync", (req, res) => {
