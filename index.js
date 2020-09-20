@@ -2,8 +2,9 @@ require("dotenv").config();
 const helmet = require("helmet");
 const express = require("express");
 const mongoose = require("mongoose");
-const { Message } = require("./models/message");
 const Pusher = require("pusher");
+const app = express();
+require("./startup/routes")(app);
 
 mongoose
   .connect(`${process.env.DB_CREDENTIALS}`, {
@@ -11,9 +12,6 @@ mongoose
     useNewUrlParser: true,
   })
   .then(() => console.log("Connected to MongoDb"));
-
-const app = express();
-app.use(express.json());
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -57,19 +55,6 @@ db.once("open", () => {
 
 const server = app.listen(port, () => console.log(`Listening on port ${port}`));
 
-app.post("/api/messages", async (req, res) => {
-  const newMessage = new Message({
-    message: req.body.message,
-    name: req.body.name,
-    received: req.body.received,
-  });
-
-  try {
-    const result = await newMessage.save();
-    res.send(result);
-  } catch (error) {
-    console.log(error.message);
-  }
-});
+// app.post("/api/messages", );
 
 // app.get("/api/messages/sync", );

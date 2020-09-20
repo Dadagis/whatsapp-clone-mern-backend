@@ -10,4 +10,19 @@ module.exports = {
       }
     });
   },
+
+  create: async (req, res) => {
+    const newMessage = new Message({
+      message: req.body.message,
+      name: req.body.name,
+      received: req.body.received,
+    });
+
+    try {
+      const result = await newMessage.save();
+      res.send(result);
+    } catch (error) {
+      console.log(error.message);
+    }
+  },
 };
