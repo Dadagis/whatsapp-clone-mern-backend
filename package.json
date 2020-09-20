@@ -5,9 +5,13 @@
   "author": "David <davidobob@laposte.net>",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^4.1.1",
+    "joi": "^17.2.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.20",
     "mongoose": "^5.10.4",
     "pusher": "^3.0.1"
   }
