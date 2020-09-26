@@ -3,6 +3,7 @@ const helmet = require("helmet");
 const express = require("express");
 const mongoose = require("mongoose");
 const Pusher = require("pusher");
+const cors = require("cors");
 const app = express();
 require("./startup/routes")(app);
 
@@ -13,11 +14,13 @@ mongoose
   })
   .then(() => console.log("Connected to MongoDb"));
 
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Headers", "*");
-  next();
-});
+// app.use(cors());
+
+// app.use((req, res, next) => {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader("Access-Control-Allow-Headers", "*");
+//   next();
+// });
 
 app.use(helmet());
 const port = process.env.PORT || 4000;
