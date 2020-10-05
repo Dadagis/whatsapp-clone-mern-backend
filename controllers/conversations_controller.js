@@ -28,6 +28,7 @@ module.exports = {
 
   findByUserId: (req, res) => {
     const user = await User.findById(req.user._id);
+    console.log(req)
 
     if (!user) {
         res
