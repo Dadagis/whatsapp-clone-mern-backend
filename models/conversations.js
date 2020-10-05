@@ -4,7 +4,7 @@ const Joi = require("joi");
 const conversationSchema = new mongoose.Schema(
   {
     users: {
-      type: Array,
+      type: [String],
       required: true,
     },
   },
