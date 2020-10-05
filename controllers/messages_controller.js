@@ -15,7 +15,7 @@ module.exports = {
     const newMessage = new Message({
       message: req.body.message,
       name: req.body.name,
-      received: req.body.received,
+      emitter: req.body.emitter,
     });
 
     try {

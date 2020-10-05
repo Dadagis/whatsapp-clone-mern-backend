@@ -48,7 +48,7 @@ db.once("open", () => {
         name: messageDetails.name,
         message: messageDetails.message,
         timestamp: messageDetails.createdAt,
-        received: messageDetails.received,
+        emitter: messageDetails.emitter,
       });
     } else {
       console.log("Pusher error");
