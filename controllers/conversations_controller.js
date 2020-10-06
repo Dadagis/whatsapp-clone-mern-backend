@@ -55,8 +55,6 @@ module.exports = {
       return;
     }
 
-    console.log(conversations);
-
     try {
       res.send(conversations);
     } catch (error) {

@@ -26,4 +26,19 @@ module.exports = {
       console.log(error.message);
     }
   },
+
+  getMessagesByConvId: async (req, res) => {
+    const messages = await Message.find().where("conversation").in(req.params);
+
+    if (!messages) {
+      res.status(400).send("No messages found for the given conversation");
+      return;
+    }
+
+    try {
+      res.send(messages);
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
