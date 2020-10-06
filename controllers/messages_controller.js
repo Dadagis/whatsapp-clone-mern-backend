@@ -16,6 +16,7 @@ module.exports = {
       message: req.body.message,
       name: req.body.name,
       emitter: req.body.emitter,
+      conversation: req.body.conversation,
     });
 
     try {
