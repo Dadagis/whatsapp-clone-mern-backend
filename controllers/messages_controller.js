@@ -28,7 +28,9 @@ module.exports = {
   },
 
   getMessagesByConvId: async (req, res) => {
-    const messages = await Message.find().where("conversation").in(req.params);
+    const messages = await Message.find()
+      .where("conversation")
+      .in(req.params.id);
 
     if (!messages) {
       res.status(400).send("No messages found for the given conversation");
