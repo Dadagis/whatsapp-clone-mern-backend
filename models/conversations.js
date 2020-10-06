@@ -7,6 +7,10 @@ const conversationSchema = new mongoose.Schema(
       type: [String],
       required: true,
     },
+    usersNames: {
+      type: [String],
+      required: true,
+    },
   },
   { timestamps: true }
 );
