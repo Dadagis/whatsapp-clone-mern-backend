@@ -47,6 +47,7 @@ db.once("open", () => {
         _id: messageDetails._id,
         name: messageDetails.name,
         message: messageDetails.message,
+        conversation: messageDetails.conversation,
         timestamp: messageDetails.createdAt,
         emitter: messageDetails.emitter,
       });
