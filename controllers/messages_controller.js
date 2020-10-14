@@ -2,7 +2,6 @@ const { Message } = require("../models/message");
 
 module.exports = {
   getAllMessages: (req, res) => {
-    console.log("ALL MESSAGES");
     Message.find((err, data) => {
       if (err) {
         res.status(500).send(err);
