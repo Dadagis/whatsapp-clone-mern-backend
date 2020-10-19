@@ -43,4 +43,11 @@ module.exports = {
       console.log(error.message);
     }
   },
+
+  all: async (req, res) => {
+    let users = await User.find().select("_id name");
+    if (!users) return res.status(404).send("No users found");
+
+    res.send(users);
+  },
 };
