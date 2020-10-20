@@ -2,6 +2,12 @@
   "name": "whatsapp-clone-mern-backend",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "14.10.0"
+  },
   "author": "David <davidobob@laposte.net>",
   "license": "MIT",
   "dependencies": {
